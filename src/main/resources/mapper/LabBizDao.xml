@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="LabBizDao">
+
+    <select id="queryLabUsers" parameterType="map"
+            resultType="com.wenpc.unittest.tddlab.labTdd.entity.LabUser">
+        select * from lab_user
+        where 1=1 ${condition}
+    </select>
+
+    <update id="updateUserMoney" parameterType="map">
+        update lab_user
+        set updateTime = now()
+        ,totalAddMoney = ifnull(totalAddMoney, 0) + ${totalAddMoney}
+        ,totalUseMoney = ifnull(totalUseMoney, 0) - ${totalUseMoney}
+        ,remainMoney = remainMoney + ${money}
+        where id = ${userId}
+    </update>
+
+    <update id="updateUserScore" parameterType="map">
+        update lab_user
+        set updateTime = now()
+        ,score = ${score}
+        where id = ${userId}
+    </update>
+
+    <insert id="insertUser" parameterType="com.wenpc.unittest.tddlab.labTdd.entity.LabUser"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into lab_user(totalAddMoney, username, totalUseMoney, remainMoney, score, createTime, updateTime,
+        password, age, remark)
+        values(${totalAddMoney}, #{username}, ${totalUseMoney}, ${remainMoney}, ${score}, now(), now(), #{password},
+        #{age}, #{remark})
+    </insert>
+
+    <insert id="insertBuyGood" parameterType="com.wenpc.unittest.tddlab.labTdd.entity.LabBuyGood"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into lab_buy_good(userId, goodName, useMoney, createTime)
+        values(${userId}, #{goodName}, ${useMoney}, now())
+    </insert>
+
+    <insert id="insertAddMoney" parameterType="com.wenpc.unittest.tddlab.labTdd.entity.LabAddMoney"
+            keyProperty="id" useGeneratedKeys="true">
+        insert into lab_add_money(userId, addMoney, createTime)
+        values(${userId}, ${addMoney}, now())
+    </insert>
+
+</mapper>
+

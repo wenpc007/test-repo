@@ -1,0 +1,5 @@
+userid,exceptResStatus,exceptValue
+-1,200,用户信息不存在！
+1,200,""
+99,200,用户信息不存在！
+,200,用户信息不存在！

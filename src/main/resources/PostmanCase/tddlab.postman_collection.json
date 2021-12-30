@@ -1,0 +1,1149 @@
+{
+	"info": {
+		"_postman_id": "cdbba2ea-a84b-4c25-9437-cdd8ffaecefd",
+		"name": "tddlab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取用户列表",
+			"item": [
+				{
+					"name": "获取用户列表条件空",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"返回code断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"返回数据count断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.rows.length).to.above(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{tddlabServer}}/queryLabUsers?condition",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"",
+								"queryLabUsers"
+							],
+							"query": [
+								{
+									"key": "condition",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户列表条件空 [id>0]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"返回code断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"返回数据count断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.rows.length).to.above(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{tddlabServer}}/queryLabUsers?condition=and id>0",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"",
+								"queryLabUsers"
+							],
+							"query": [
+								{
+									"key": "condition",
+									"value": "and id>0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户列表条件空[error input]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"返回code断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.code).to.eql(5000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"返回message断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql('参数请求不符合预定格式！')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{tddlabServer}}/queryLabUsers?condition=test error input",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"",
+								"queryLabUsers"
+							],
+							"query": [
+								{
+									"key": "condition",
+									"value": "test error input"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "新增用户",
+			"item": [
+				{
+					"name": "新增用户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"新增结果断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql('新增成功!');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "朱七",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "222222",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "26",
+									"type": "text"
+								},
+								{
+									"key": "createTime",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "remainMoney",
+									"value": "180",
+									"type": "text"
+								},
+								{
+									"key": "score",
+									"value": "60",
+									"type": "text"
+								},
+								{
+									"key": "totalAddMoney",
+									"value": "230",
+									"type": "text"
+								},
+								{
+									"key": "totalUseMoney",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "updateTime",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "remark",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addUser",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "充值接口",
+			"item": [
+				{
+					"name": "正常充值",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值 [error user id]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回结果断言(用户不存在)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"    pm.expect(jsonData.code).to.eql(5000)\r",
+									"    pm.expect(jsonData.message).to.eql('用户不存在！')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值 [负值]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回结果断言(充值金额必须大于零！)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"    pm.expect(jsonData.code).to.eql(5000)\r",
+									"    pm.expect(jsonData.message).to.eql('充值金额必须大于零！')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值 [min边界0]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回结果断言(充值金额必须大于零！)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"    pm.expect(jsonData.code).to.eql(5000)\r",
+									"    pm.expect(jsonData.message).to.eql('充值金额必须大于零！')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值 [max边界2000]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回结果断言(用户不存在)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "2000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值 [max边界超限]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回结果断言(单次充值金额不得大于2000元整！)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"    pm.expect(jsonData.code).to.eql(5000)\r",
+									"    pm.expect(jsonData.message).to.eql('单次充值金额不得大于2000元整！')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "2001",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "消费接口",
+			"item": [
+				{
+					"name": "正常消费",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "useMoney",
+									"value": "20",
+									"description": "消费金额",
+									"type": "text"
+								},
+								{
+									"key": "goodName",
+									"value": "铅笔",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/buyGood",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"buyGood"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "充值 [error user id]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回结果断言(用户不存在)\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(false);\r",
+									"    pm.expect(jsonData.code).to.eql(5000)\r",
+									"    pm.expect(jsonData.message).to.include('未取得这个用户资料')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "useMoney",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "goodName",
+									"value": "铅笔",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/buyGood",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"buyGood"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "获取用户数据",
+			"item": [
+				{
+					"name": "获取用户信息[文件参数化]",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"msg断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.eql(true);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{tddlabServer}}/getUser?id=1",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"getUser"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "新建-充值-消费-查看流程",
+			"item": [
+				{
+					"name": "mock获取用户信息",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"mock信息检验+变量存储\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.username).to.eql('张三');\r",
+									"\r",
+									"    pm.environment.set(\"mock_username\", '周杰伦')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://easy-mock.wenpc.com:7300/mock/60154953e7ddd74b185101e6/UserSystemApi/GetUserByName?username=张三",
+							"protocol": "http",
+							"host": [
+								"easy-mock",
+								"wenpc",
+								"com"
+							],
+							"port": "7300",
+							"path": [
+								"mock",
+								"60154953e7ddd74b185101e6",
+								"UserSystemApi",
+								"GetUserByName"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "张三"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "新增用户",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"新增结果断言\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql('新增成功!');\r",
+									"\r",
+									"    pm.environment.set(\"new_userid\", jsonData.data.Data.id);\r",
+									"    pm.environment.set(\"remainMoney\", jsonData.data.Data.remainMoney);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{mock_username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "36",
+									"type": "text"
+								},
+								{
+									"key": "createTime",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "remainMoney",
+									"value": "2600",
+									"type": "text"
+								},
+								{
+									"key": "score",
+									"value": "75",
+									"type": "text"
+								},
+								{
+									"key": "totalAddMoney",
+									"value": "5600",
+									"type": "text"
+								},
+								{
+									"key": "totalUseMoney",
+									"value": "3000",
+									"type": "text"
+								},
+								{
+									"key": "updateTime",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "remark",
+									"value": "名人",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addUser",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "正常充值",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"验证返回，设置剩余金额变量\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var ret = pm.expect(jsonData.success).to.eql(true);\r",
+									"    if(ret){\r",
+									"        var rMoney = pm.environment.get(\"remainMoney\");\r",
+									"        var result = parseInt(rMoney) + 20\r",
+									"        pm.environment.set(\"remainMoney\", result);\r",
+									"    }   \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{new_userid}}",
+									"type": "text"
+								},
+								{
+									"key": "addMoney",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/addMoney",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"addMoney"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户信息(验证充值)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"验证剩余金额\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    var rMoney = pm.environment.get('remainMoney')\r",
+									"    pm.expect(jsonData.data.labUser.remainMoney).to.eql(rMoney);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{tddlabServer}}/getUser?id={{new_userid}}",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"getUser"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{new_userid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "正常消费",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"返回校验，设置剩余金额变量\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var ret = pm.expect(jsonData.success).to.eql(true);\r",
+									"\r",
+									"    if(ret){\r",
+									"        var rMoney = pm.environment.get(\"remainMoney\");\r",
+									"        var result = parseInt(rMoney) - 20\r",
+									"        pm.environment.set(\"remainMoney\", result);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{new_userid}}",
+									"type": "text"
+								},
+								{
+									"key": "useMoney",
+									"value": "20",
+									"description": "消费金额",
+									"type": "text"
+								},
+								{
+									"key": "goodName",
+									"value": "铅笔",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{tddlabServer}}/buyGood",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"buyGood"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取用户信息(验证消费)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"剩余金额验证\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"\r",
+									"    var rMoney = pm.environment.get('remainMoney')\r",
+									"    pm.expect(jsonData.data.labUser.remainMoney).to.eql(rMoney);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{tddlabServer}}/getUser?id={{new_userid}}",
+							"protocol": "http",
+							"host": [
+								"{{tddlabServer}}"
+							],
+							"path": [
+								"getUser"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{new_userid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "tddlabServer",
+			"value": "api01.wenpc.com:8080"
+		}
+	]
+}
